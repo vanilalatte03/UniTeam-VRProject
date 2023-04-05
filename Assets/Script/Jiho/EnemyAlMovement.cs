@@ -37,7 +37,7 @@ public class EnemyAIMovement : MonoBehaviour
     {
         //checking whether the enemy is still alive
         //if not then return immediately
-        dead = GetComponent<EnemyHealth>().IsDead();
+       // dead = GetComponent<EnemyHealth>().IsDead();
         if (dead) { return; }
 
         //assigning the distance to enemy from target
