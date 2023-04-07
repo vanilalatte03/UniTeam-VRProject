@@ -6,45 +6,49 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     bool fDown;
-    public GameObject weapons;
-    //bool isFireReady;
-    //float fireDelay;
-    Weapon weapon;
+    public GameObject[] weapons; 
+    Weapon equipweapon;
+    bool isFireReady;
+    float fireDelay;
     
-
      void Awake()
-    {
-        weapon = weapons.GetComponent<Weapon>();
-    }
+     {
+        foreach (var item in weapons)
+        {
+            equipweapon = item.GetComponent<Weapon>();
+        }
+     }
 
-    // Update is called once per frame
     void Update()
     {
         GetInput();
         Attack();
     }
 
+    //사용자 입력
    void GetInput()
     {
-        fDown = Input.GetButton("Fire1");
-        Debug.Log("아아");
+        fDown = Input.GetButtonDown("Fire1");
+        Debug.Log("마우스 입력됨.");
     }
 
     void Attack()
     {
-        if(weapon == null)
+        if(equipweapon == null)
         {
             Debug.Log("리턴");
             return;
         }
-        //fireDelay += Time.deltaTime;
-        //isFireReady = weapon.rate < fireDelay;
 
-        if(fDown)
+        //공격딜레이
+        fireDelay += Time.deltaTime;
+        isFireReady = equipweapon.rate < fireDelay;
+
+        if(fDown && isFireReady)
         {
-            weapon.Use();
-            Debug.Log("실행");
-            //fireDelay = 0;
+            equipweapon.Use();
+            Debug.Log("공격");
+            fireDelay = 0;
         }
      }
 }
