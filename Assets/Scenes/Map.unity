@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.30321336, g: 0.12815265, b: 0.34266487, a: 1}
+  m_IndirectSpecularColor: {r: 0.30322725, g: 0.12813418, b: 0.342678, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 3578e0084ef6f8d4785f3623519ec2e5, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -4441,7 +4441,7 @@ MonoBehaviour:
   type: 0
   rate: 0.5
   bulletPos: {fileID: 1473083963}
-  bullet: {fileID: 3127634536255811268, guid: 086e8034f489cdc479b252429cb831cd, type: 3}
+  bullet: {fileID: 345413665872043790, guid: 47605093bd3639b449f36ee26829cab4, type: 3}
 --- !u!1 &779838766
 GameObject:
   m_ObjectHideFlags: 0
