@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     bool fDown;
+    public GameObject weapons;
     //bool isFireReady;
     //float fireDelay;
     Weapon weapon;
@@ -13,29 +14,29 @@ public class Player : MonoBehaviour
 
      void Awake()
     {
-    
+        weapon = weapons.GetComponent<Weapon>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        fDown = Input.GetMouseButton(0);
-        if (fDown)
-        {          
-            weapon.Use();
-            Debug.Log("실행");
-            //fireDelay = 0;
-        }
+        GetInput();
+        Attack();
     }
 
-    /*void GetInput()
+   void GetInput()
     {
         fDown = Input.GetButton("Fire1");
         Debug.Log("아아");
-    }*/
+    }
 
-    /*void Attack()
+    void Attack()
     {
+        if(weapon == null)
+        {
+            Debug.Log("리턴");
+            return;
+        }
         //fireDelay += Time.deltaTime;
         //isFireReady = weapon.rate < fireDelay;
 
@@ -45,5 +46,5 @@ public class Player : MonoBehaviour
             Debug.Log("실행");
             //fireDelay = 0;
         }
-     }*/
+     }
 }

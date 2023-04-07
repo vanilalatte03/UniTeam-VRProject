@@ -9,8 +9,6 @@ public class Weapon : MonoBehaviour
     public float rate; //공속
     public Transform bulletPos;
     public GameObject bullet;
-    public Transform bulletCasePos;
-    public GameObject bulletCase;
 
     public void Use()
     {
@@ -28,11 +26,5 @@ public class Weapon : MonoBehaviour
         bulletRigid.velocity = bulletPos.forward * 50;
 
         yield return null;
-
-        //탄피 배출
-        GameObject intantCase = Instantiate(bulletCase, bulletCasePos.position, bulletCasePos.rotation);
-        Rigidbody caseRigid = intantCase.GetComponent<Rigidbody>();
-        Vector3 caseVec = bulletCasePos.forward * Random.Range(-3, -2) + Vector3.up * Random.Range(2, 3);
-        caseRigid.AddForce(caseVec, ForceMode.Impulse);
     }
 }
