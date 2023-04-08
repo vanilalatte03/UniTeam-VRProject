@@ -5,8 +5,14 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool IsGameActive = true;
-    public static bool IsGamePause = false;
+    // 다른 스크립트에서 호출 가능하게 하도록 싱글톤
+    [HideInInspector]
+    public static GameManager Instance; 
+
+    [HideInInspector]
+    public bool IsGameActive = true;            // 게임 승,패등의 진행상황을 결정하는 변수
+    [HideInInspector]
+    public bool IsGamePause = false;            // 게임이 퍼즈상황인지 아닌지대한 변수
 
     [SerializeField]
     private TextMeshProUGUI txtTimer;
@@ -17,13 +23,21 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject panelPause;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }           
+    }
 
     private void Update()
     {
         // ESC누를 시 게임 일시정지
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GamePause(!IsGamePause);        
+            PauseGame(!IsGamePause);        
         }
 
         StartTimer();
@@ -51,9 +65,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void GamePause(bool isPause)
+    public void PauseGame(bool isPause)
     {
         IsGamePause = isPause;
-        panelPause.SetActive(isPause);     
+        panelPause.SetActive(isPause);
+        
+        Time.timeScale = isPause ? 0 : 1;
+        Cursor.lockState = isPause ? CursorLockMode.None : CursorLockMode.Locked;       
+    }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); 
+#endif
     } 
 }

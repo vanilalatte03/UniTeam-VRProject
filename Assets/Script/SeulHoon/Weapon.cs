@@ -20,6 +20,11 @@ public class Weapon : MonoBehaviour
 
     IEnumerator Shot()
     {
+        if (GameManager.Instance.IsGamePause || !GameManager.Instance.IsGameActive)
+        {
+            yield return null;
+        }
+
         //ÃÑ¾Ë ¹ß»ç
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();

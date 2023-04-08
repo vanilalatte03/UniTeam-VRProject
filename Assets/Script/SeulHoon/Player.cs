@@ -27,25 +27,29 @@ public class Player : MonoBehaviour
 
     //사용자 입력
    void GetInput()
-    {
-        fDown = Input.GetButtonDown("Fire1");
-        Debug.Log("마우스 입력됨.");
+    {       
+        fDown = Input.GetButtonDown("Fire1");   
     }
 
     void Attack()
     {
-        if(equipweapon == null)
+        if (GameManager.Instance.IsGamePause || !GameManager.Instance.IsGameActive)
+        {
+            return;
+        }
+
+        if (equipweapon == null)
         {
             Debug.Log("리턴");
             return;
         }
-
+        
         //공격딜레이
         fireDelay += Time.deltaTime;
         isFireReady = equipweapon.rate < fireDelay;
-
-        if(fDown && isFireReady)
-        {
+       
+        if (fDown && isFireReady)
+        {            
             equipweapon.Use();
             Debug.Log("공격");
             fireDelay = 0;

@@ -152,7 +152,7 @@ public class FirstPersonController : MonoBehaviour
     void Start()
     {
         if(lockCursor)
-        {
+        {            
             Cursor.lockState = CursorLockMode.Locked;
         }
 
@@ -201,12 +201,18 @@ public class FirstPersonController : MonoBehaviour
     float camRotation;
 
     private void Update()
-    {
+    {    
         #region Camera
 
         // Control camera movement
-        if(cameraCanMove)
+        if (cameraCanMove)
         {
+            // 일시정지, 게임 종료시 케릭터 시야이동 불가능하도록
+            if (GameManager.Instance.IsGamePause || !GameManager.Instance.IsGameActive)
+            {
+                return;
+            }
+
             yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
 
             if (!invertCamera)

@@ -16,20 +16,24 @@ public class Model : MonoBehaviour {
 			anim = gameObject.GetComponentInChildren<Animator>();
 		}
 
-		void Update (){
-			if (Input.GetKey ("w")) {
-				anim.SetInteger ("AnimationPar", 1);
-			}  else {
-				anim.SetInteger ("AnimationPar", 0);
+		// 오류로 인해 잠시 보류
+		/*void Update (){
+			if (Input.GetKey("w"))
+			{
+				anim.SetInteger("AnimationPar", 1);
+			}
+			else
+			{
+				anim.SetInteger("AnimationPar", 0);
 			}
 
-			if(controller.isGrounded){
-				moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
-			}
+			if (controller.isGrounded){
+					moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
+				}
 
 			float turn = Input.GetAxis("Horizontal");
 			transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
 			controller.Move(moveDirection * Time.deltaTime);
 			moveDirection.y -= gravity * Time.deltaTime;
-		}
+		}*/
 }

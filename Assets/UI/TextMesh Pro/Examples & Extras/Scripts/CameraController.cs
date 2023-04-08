@@ -81,10 +81,9 @@ namespace TMPro.Examples
         {
             GetPlayerInput();
 
-
             // Check if we still have a valid target
             if (CameraTarget != null)
-            {
+            {              
                 if (CameraMode == CameraModes.Isometric)
                 {
                     desiredPosition = CameraTarget.position + Quaternion.Euler(ElevationAngle, OrbitalAngle, 0f) * new Vector3(0, 0, -FollowDistance);
@@ -113,7 +112,7 @@ namespace TMPro.Examples
                 if (RotationSmoothing == true)
                     cameraTransform.rotation = Quaternion.Lerp(cameraTransform.rotation, Quaternion.LookRotation(CameraTarget.position - cameraTransform.position), RotationSmoothingValue * Time.deltaTime);
                 else
-                {
+                {                   
                     cameraTransform.LookAt(CameraTarget);
                 }
 
@@ -148,7 +147,7 @@ namespace TMPro.Examples
 
                 // Check for right mouse button to change camera follow and elevation angle
                 if (Input.GetMouseButton(1))
-                {
+                {                   
                     mouseY = Input.GetAxis("Mouse Y");
                     mouseX = Input.GetAxis("Mouse X");
 
