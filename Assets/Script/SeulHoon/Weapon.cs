@@ -9,11 +9,14 @@ public class Weapon : MonoBehaviour
     public float rate; //공속
     public Transform bulletPos; //총알이 발사되는 위치
     public GameObject bullet;
+    public int maxAmmo; //최대탄창
+    public int curAmmo; //현재탄창
 
     public void Use()
     {
-        if (type == Type.Range)
+        if (type == Type.Range && curAmmo > 0)
         {
+            curAmmo--;
             StartCoroutine("Shot");
         }
     }
