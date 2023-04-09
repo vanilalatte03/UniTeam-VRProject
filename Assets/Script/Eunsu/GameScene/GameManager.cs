@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -19,9 +20,20 @@ public class GameManager : MonoBehaviour
     private float time = 600f;
 
     [SerializeField]
+    private TextMeshProUGUI txtGunState;
+
+    [SerializeField]
+    private Slider playerHPSlider;
+
+    [SerializeField]
+    private TextMeshProUGUI txtPlayerHP;
+
+    [SerializeField]
     private GameObject panelGame;
     [SerializeField]
     private GameObject panelPause;
+
+    
 
     private void Awake()
     {
@@ -29,7 +41,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
-        }           
+        }       
     }
 
     private void Update()
@@ -82,4 +94,20 @@ public class GameManager : MonoBehaviour
         Application.Quit(); 
 #endif
     } 
+
+    public void ShootingUIUpdate(int curAmmo, int maxAmmo)
+    {
+        txtGunState.text = $"{curAmmo} / {maxAmmo}";
+    }
+
+    public void ReloadUIUpdate()
+    {
+        txtGunState.text = "¿Â¿¸ ¡ﬂ...";
+    }   
+
+    public void PlayerHPUIUpdate(int curHp, int maxHp)
+    {
+        playerHPSlider.value = curHp / maxHp;
+        txtPlayerHP.text = $"{curHp} / {maxHp}";
+    }  
 }

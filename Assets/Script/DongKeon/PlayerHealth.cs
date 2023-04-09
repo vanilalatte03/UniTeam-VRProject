@@ -4,37 +4,39 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public int maxHealth = 100;
+    public int curHealth;
 
-    public int health = 100;
+    private void Awake()
+    {
+        curHealth = maxHealth;        
+    }
+
+    private void Start()
+    {  
+        GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);    
+    }
 
     public void TakeDamage(int damageAmount)
     {
-        health -= damageAmount;
-
-        if (health <= 0)
+        curHealth -= damageAmount;
+        GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);
+        if (maxHealth <= 0)
         {
+            curHealth = 0;
             // 캐릭터가 사망한 경우 처리
         }
     }
 
     public void Heal(int healAmount)
     {
-        health += healAmount;
-
-        if (health > 100)
+        curHealth += healAmount;
+        
+        if (curHealth > 100)
         {
-            health = 100;
+            curHealth = 100;
         }
-    }
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{
+{  
     bool fDown;
     bool rDown;
     bool isFireReady;
@@ -16,12 +16,17 @@ public class Player : MonoBehaviour
     float fireDelay;
     
      void Awake()
-     {
+     {      
         foreach (var item in weapons)
         {
             equipweapon = item.GetComponent<Weapon>();
-        }
-     }
+        }       
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.ShootingUIUpdate(equipweapon.curAmmo, equipweapon.maxAmmo);            // 게임 초기시 UI 탄창 업데이드 (은수 작업)
+    }
 
     void Update()
     {
@@ -56,7 +61,7 @@ public class Player : MonoBehaviour
        
         if (fDown && isFireReady)
         {            
-            equipweapon.Use();
+            equipweapon.Use();       
             Debug.Log("공격");
             fireDelay = 0;
         }
@@ -78,6 +83,7 @@ public class Player : MonoBehaviour
         }
         if (rDown && isFireReady)
         {
+            GameManager.Instance.ReloadUIUpdate();
             isReload = true;
             Debug.Log("재장전");
             Invoke("ReloadOut", 0.5f);//뒤에 숫자 재장전 시간
@@ -89,5 +95,7 @@ public class Player : MonoBehaviour
         equipweapon.curAmmo = equipweapon.maxAmmo;
         ammo -= reAmmo;
         isReload = false;
+
+        GameManager.Instance.ShootingUIUpdate(equipweapon.curAmmo, equipweapon.maxAmmo);            // UI 탄창 업데이드 (은수 작업)
     }
 }

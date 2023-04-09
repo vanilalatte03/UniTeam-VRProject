@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
-{
+{ 
     public enum Type { Range }; //무기타입
     public Type type;
     public float rate; //공속
@@ -13,21 +13,17 @@ public class Weapon : MonoBehaviour
     public int curAmmo; //현재탄창
 
     public void Use()
-    {
+    {   
         if (type == Type.Range && curAmmo > 0)
         {
             curAmmo--;
+            GameManager.Instance.ShootingUIUpdate(curAmmo, maxAmmo);            // UI 탄창 업데이드 (은수 작업)
             StartCoroutine("Shot");
         }
     }
 
     IEnumerator Shot()
-    {
-        if (GameManager.Instance.IsGamePause || !GameManager.Instance.IsGameActive)
-        {
-            yield return null;
-        }
-
+    {     
         //총알 발사
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
