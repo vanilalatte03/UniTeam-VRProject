@@ -4558,6 +4558,8 @@ MonoBehaviour:
   rate: 0.5
   bulletPos: {fileID: 1473083963}
   bullet: {fileID: 345413665872043790, guid: 47605093bd3639b449f36ee26829cab4, type: 3}
+  maxAmmo: 7
+  curAmmo: 7
 --- !u!1 &779838766
 GameObject:
   m_ObjectHideFlags: 0
@@ -10135,6 +10137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - {fileID: 758771467}
+  ammo: 100
 --- !u!95 &1853535223
 Animator:
   serializedVersion: 5
