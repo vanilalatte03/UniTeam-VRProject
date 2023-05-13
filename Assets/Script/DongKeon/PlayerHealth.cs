@@ -39,4 +39,10 @@ public class PlayerHealth : MonoBehaviour
 
         GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);
     }
+
+    public void FieldDamage(int damage)
+    {
+        curHealth -= damage;
+        GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);
+    }
 }

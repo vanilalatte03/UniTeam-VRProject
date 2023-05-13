@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerHPUIUpdate(int curHp, int maxHp)
     {
-        playerHPSlider.value = curHp / maxHp;
+        playerHPSlider.value = (float) curHp / maxHp;
         txtPlayerHP.text = $"{curHp} / {maxHp}";
     }  
 }
