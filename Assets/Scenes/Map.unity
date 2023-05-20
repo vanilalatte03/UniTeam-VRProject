@@ -6919,7 +6919,7 @@ GameObject:
   - component: {fileID: 631282064}
   - component: {fileID: 631282063}
   m_Layer: 0
-  m_Name: GasZone2 (1)
+  m_Name: GasZone4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38038,7 +38038,7 @@ GameObject:
   - component: {fileID: 1766694267}
   - component: {fileID: 1766694266}
   m_Layer: 0
-  m_Name: GasZone2
+  m_Name: GasZone3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
