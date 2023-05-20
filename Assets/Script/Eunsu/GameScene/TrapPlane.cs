@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TrapPlane : MonoBehaviour
 {
-
     [SerializeField]
     private GameObject wallHpPanel;
 
@@ -13,19 +12,24 @@ public class TrapPlane : MonoBehaviour
     [SerializeField]
     private float fireFieldTime = 0.5f;
 
-    private Coroutine fireFieldCor;
+    [SerializeField]
+    private ParticleSystem gasEffect;
 
-    private void OnCollisionEnter(Collision collision)
+    private Coroutine fireFieldCor;
+  
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            Transform trapWall = transform.GetChild(0);
+            TrapWall trapWall = transform.GetChild(0).GetComponent<TrapWall>();
 
             if (trapWall != null)
             {
-                trapWall.gameObject.SetActive(true);
-                wallHpPanel.SetActive(true);
-                fireFieldCor = StartCoroutine(FireField(collision.transform));
+                Debug.Log("플레인에 플레이어가 닿았고, trapwall이 감지되었다");
+                trapWall.FadeOnStart();
+                fireFieldCor = StartCoroutine(FireField(other.transform));
+
+                gasEffect.Play();
             } 
         }
     }
@@ -44,11 +48,12 @@ public class TrapPlane : MonoBehaviour
         }      
     }
 
-    private void OnCollisionExit(Collision collision)
-    {   
-        if(collision.gameObject.CompareTag("Player"))
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
         {
             StopCoroutine(fireFieldCor);
-        }        
+            gasEffect.Stop();
+        }
     }
 }
