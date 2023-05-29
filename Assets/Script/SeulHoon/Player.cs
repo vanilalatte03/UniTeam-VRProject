@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = equipweapon.rate < fireDelay;
        
-        if (fDown && isFireReady)
+        if (fDown && isFireReady && equipweapon.curAmmo > 0)
         {            
             equipweapon.Use();       
             Debug.Log("АјАн");

@@ -27,10 +27,20 @@ public class TrapWall : MonoBehaviour
         MeshRenderer = GetComponent<MeshRenderer>();
     }
 
+    public void WallHPUIClose()
+    {
+        wallHpPanel.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
+            if (wallHpPanel.activeSelf == false)
+            {
+                wallHpPanel.SetActive(true);
+            }
+
             Bullet bullet = other.GetComponent<Bullet>();
             curWallHP -= bullet.damage;
             Destroy(bullet.gameObject);

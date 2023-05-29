@@ -9,9 +9,18 @@ public class SlimeMonsterHealth : MonoBehaviour
 
     CapsuleCollider capCollider;
 
+    SlimeHPSlider slimeHPSlider;
+
+    [SerializeField]
+    private ParticleSystem monsterDieEffect;
+
+    [SerializeField]
+    private AudioSource audioDie;
+
     private void Awake()
     {
         capCollider = GetComponent<CapsuleCollider>();
+        slimeHPSlider = GetComponent<SlimeHPSlider>();
     }
 
     private void Start()
@@ -26,6 +35,7 @@ public class SlimeMonsterHealth : MonoBehaviour
             Bullet bullet = other.GetComponent<Bullet>();
             TakeDamage(bullet.damage);
             Debug.Log("Bullet 맞음 , 남은피:" + currentHealth + "총알 대미지:" + bullet.damage);
+            slimeHPSlider.SlimeHPSliderUpdate(currentHealth, maxHealth);
         }
     }
 
@@ -39,14 +49,16 @@ public class SlimeMonsterHealth : MonoBehaviour
         }
     }
 
-
     private void Die()
     {
         // 사망연출
         //사망처리
-
+        monsterDieEffect.Play();
+        monsterDieEffect.transform.SetParent(null);
         Destroy(gameObject, 0.5f);
         gameObject.SetActive(false);
 
+        ScoreManager.Instance.PlusScore("Type_A");
+        audioDie.Play();
     }
 }

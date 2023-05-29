@@ -33,8 +33,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject panelPause;
 
-    
-
     private void Awake()
     {
         if (Instance == null)
