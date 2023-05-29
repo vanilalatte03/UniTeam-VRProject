@@ -42,8 +42,8 @@ public class TrapPlane : MonoBehaviour
         {
             while (true)
             {
-                playerHealth.FieldDamage(fireFieldDamage);
-                yield return new WaitForSeconds(fireFieldTime);
+                playerHealth.FieldDamage(fireFieldDamage + 1);
+                yield return new WaitForSeconds(fireFieldTime + 0.5f);
             }
         }      
     }

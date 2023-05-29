@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int curHealth;
+
+    [SerializeField]
+    private Image panelPlayerBlood;
+
+    [SerializeField]
+    private float bloodScreenCoolTime;
 
     private void Awake()
     {
@@ -21,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
     {
         curHealth -= damageAmount;
         GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);
+        StartCoroutine("PanelDamageEffect");
         if (maxHealth <= 0)
         {
             curHealth = 0;
@@ -44,5 +52,32 @@ public class PlayerHealth : MonoBehaviour
     {
         curHealth -= damage;
         GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);
+        StartCoroutine("FielPanelDamageEffect");
+    }
+
+    public IEnumerator FielPanelDamageEffect()
+    {
+        yield return new WaitForSeconds(1f);
+
+        StartCoroutine("PanelDamageEffect");
+    }
+
+    private IEnumerator PanelDamageEffect()
+    {
+        float currentTime = 0.0f;
+        float percent = 0.0f;
+        float redAlpha = 0.6f;
+
+        while (percent < 1)
+        {
+            currentTime += Time.deltaTime;
+            percent = currentTime / bloodScreenCoolTime;
+
+            float alpha = percent > redAlpha ? redAlpha : percent;
+
+            panelPlayerBlood.color = new Color(255, 0, 0, redAlpha - alpha);
+
+            yield return null;
+        }
     }
 }

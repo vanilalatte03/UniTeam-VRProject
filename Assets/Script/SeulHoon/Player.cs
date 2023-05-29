@@ -16,11 +16,22 @@ public class Player : MonoBehaviour
     public int ammo; //플레이어의 탄알 총량
     float fireDelay;
 
+    private PlayerHealth playerHealth;
+
     [SerializeField]
     private ParticleSystem shotEffectParticle;
 
+    [SerializeField]
+    private AudioSource heatSound;
+
+    [SerializeField]
+    private float invincibilityTime = 1.0f;
+
+    private bool isInviciility;
+
      void Awake()
-     {      
+     {
+        playerHealth = GetComponent<PlayerHealth>();
         foreach (var item in weapons)
         {
             equipweapon = item.GetComponent<Weapon>();
@@ -103,5 +114,21 @@ public class Player : MonoBehaviour
         isReload = false;
 
         GameManager.Instance.ShootingUIUpdate(equipweapon.curAmmo, equipweapon.maxAmmo);            // UI 탄창 업데이드 (은수 작업)
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Monster" && isInviciility == false)
+        {
+            isInviciility = true;
+            playerHealth.TakeDamage(10);            // 몬스터의 공격력은 임시로 10 설정
+            heatSound.Play();
+            Invoke("InviciilityControl", invincibilityTime);
+        }
+    }
+
+    private void InviciilityControl()
+    {
+        isInviciility = false;
     }
 }
