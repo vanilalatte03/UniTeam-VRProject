@@ -15,7 +15,10 @@ public class Player : MonoBehaviour
     public GunSound gunSound;
     public int ammo; //플레이어의 탄알 총량
     float fireDelay;
-    
+
+    [SerializeField]
+    private ParticleSystem shotEffectParticle;
+
      void Awake()
      {      
         foreach (var item in weapons)
@@ -65,8 +68,9 @@ public class Player : MonoBehaviour
             equipweapon.Use();       
             Debug.Log("공격");
             fireDelay = 0;
+            shotEffectParticle.Play();
         }
-     }
+    }
 
     private void Reload()
     {
