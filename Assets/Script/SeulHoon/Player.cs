@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     Weapon equipweapon;
     public GameObject[] weapons;
+    public GunSound gunSound;
     public int ammo; //플레이어의 탄알 총량
     float fireDelay;
     
@@ -73,7 +74,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if (ammo == 0)
+        if (ammo == 0 || equipweapon.curAmmo == equipweapon.maxAmmo)
         {
             return;
         }
@@ -86,6 +87,7 @@ public class Player : MonoBehaviour
             GameManager.Instance.ReloadUIUpdate();
             isReload = true;
             Debug.Log("재장전");
+            gunSound.Reload.Play();
             Invoke("ReloadOut", 0.5f);//뒤에 숫자 재장전 시간
         }
     }
