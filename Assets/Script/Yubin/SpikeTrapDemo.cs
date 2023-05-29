@@ -18,19 +18,6 @@ public class SpikeTrapDemo : MonoBehaviour
     {
         while (true)
         {
-            // 함정 활성화 상태일 때만 플레이어의 체력 감소
-            if (trapActive)
-            {
-                // 플레이어의 PlayerHealth 스크립트 가져오기
-                PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
-
-                // 플레이어의 체력 감소
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage(damageAmount);
-                }
-            }
-
             spikeTrapAnim.SetTrigger("open"); // 함정 열기 애니메이션 실행
             yield return new WaitForSeconds(2); // 2초 대기
 
@@ -60,6 +47,4 @@ public class SpikeTrapDemo : MonoBehaviour
         }
     }
 }
-
-
 
