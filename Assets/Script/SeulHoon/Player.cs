@@ -22,7 +22,13 @@ public class Player : MonoBehaviour
     private ParticleSystem shotEffectParticle;
 
     [SerializeField]
+    private ParticleSystem catchItemParticle;
+
+    [SerializeField]
     private AudioSource heatSound;
+
+    [SerializeField]
+    private AudioSource catchItemSound;
 
     [SerializeField]
     private float invincibilityTime = 1.0f;
@@ -125,10 +131,27 @@ public class Player : MonoBehaviour
             heatSound.Play();
             Invoke("InviciilityControl", invincibilityTime);
         }
+
+        if (collision.gameObject.tag == "Portal")
+        {
+            Debug.Log("게임을 클리어하였습니다!");
+            GameManager.Instance.GameClear();
+        }
     }
 
     private void InviciilityControl()
     {
         isInviciility = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Item")
+        {
+            ParticleSystem particleSystem = Instantiate(catchItemParticle, transform.position, Quaternion.identity);
+            particleSystem.transform.localScale = new Vector3(2f, 2f, 2f);
+            particleSystem.Play();
+            catchItemSound.Play();
+        }
     }
 }

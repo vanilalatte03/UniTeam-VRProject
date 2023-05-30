@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpikeD : MonoBehaviour
 {
-    public int damageAmount = 2; // 함정에 부딪쳤을 때 감소할 체력 양
+    private int damageAmount = 30; // 함정에 부딪쳤을 때 감소할 체력 양
 
     // 플레이어와 충돌한 경우 호출되는 함수
     private void OnTriggerEnter(Collider other)
@@ -18,6 +18,8 @@ public class SpikeD : MonoBehaviour
             // 플레이어의 체력 감소
             if (playerHealth != null)
             {
+                AudioSource audioSource = other.GetComponent<AudioSource>();
+                audioSource.Play();
                 playerHealth.TakeDamage(damageAmount);
             }
         }

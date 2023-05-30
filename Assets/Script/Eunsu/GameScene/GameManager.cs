@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -17,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI txtTimer;
-    private float time = 600f;
+    private float time = 1800;
 
     [SerializeField]
     private TextMeshProUGUI txtGunState;
@@ -38,7 +37,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }       
     }
 
@@ -108,4 +106,21 @@ public class GameManager : MonoBehaviour
         playerHPSlider.value = (float) curHp / maxHp;
         txtPlayerHP.text = $"{curHp} / {maxHp}";
     }  
+
+    public void GameClear()
+    {
+        SetReachTime();
+        SceneManager.LoadScene(2);
+    }
+
+    public void GameFail()
+    {
+        SetReachTime();
+        SceneManager.LoadScene(3);
+    }
+
+    private void SetReachTime()
+    {
+        PlayerPrefs.SetFloat("Time", time);
+    }
 }

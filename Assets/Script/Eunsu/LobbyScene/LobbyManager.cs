@@ -32,7 +32,7 @@ public class LobbyManager : MonoBehaviour
 
     public void UpdateScore()
     {
-        int score = PlayerPrefs.GetInt("BestTime");
+        int score = PlayerPrefs.GetInt("BestScore");
 
         if (score != 0)
         {

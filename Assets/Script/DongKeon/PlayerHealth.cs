@@ -29,10 +29,11 @@ public class PlayerHealth : MonoBehaviour
         curHealth -= damageAmount;
         GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);
         StartCoroutine("PanelDamageEffect");
-        if (maxHealth <= 0)
+        if (curHealth <= 0)
         {
             curHealth = 0;
-            // 캐릭터가 사망한 경우 처리
+            ScoreManager.Instance.SetScore();
+            GameManager.Instance.GameFail();
         }
     }
 
@@ -53,6 +54,14 @@ public class PlayerHealth : MonoBehaviour
         curHealth -= damage;
         GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);
         StartCoroutine("FielPanelDamageEffect");
+
+        if (curHealth <= 0)
+        {
+            curHealth = 0;
+            ScoreManager.Instance.SetScore();
+            GameManager.Instance.GameFail();           
+            return;
+        }
     }
 
     public IEnumerator FielPanelDamageEffect()

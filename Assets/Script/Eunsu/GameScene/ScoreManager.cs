@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -20,22 +21,6 @@ public class ScoreManager : MonoBehaviour
             Instance = this;
         }
     }
-
-    public void LateUpdate()
-    {
-       
-    }
-
-    // 스코어 점수 초마다 올라가기 오류로 일단 보류
-/*    private IEnumerator Start()
-    {
-        while(GameManager.Instance.IsGameActive)
-        {
-            currentScore += 5;
-            textScore.text = $"{currentScore}점";
-            yield return new WaitForSeconds(1f);
-        }
-    }*/
 
     private void OnTriggerEnter(Collider other)
     {
@@ -75,5 +60,22 @@ public class ScoreManager : MonoBehaviour
                 break;
         }
         textScore.text = $"{currentScore}점";
+    }
+
+    public void SetScore()
+    {
+        int bestScore = PlayerPrefs.GetInt("BestScore");
+
+        Debug.Log(bestScore);
+
+        if (bestScore < currentScore)
+        {
+            PlayerPrefs.SetInt("BestScore", currentScore);
+        } 
+
+        else
+        {
+            PlayerPrefs.SetInt("CurScore", currentScore);
+        }        
     }
 }
