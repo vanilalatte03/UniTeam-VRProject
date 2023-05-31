@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         rDown = Input.GetButtonDown("Reload");
     }
 
-    void Attack()
+    public void Attack()
     {
         if (GameManager.Instance.IsGamePause || !GameManager.Instance.IsGameActive)
         {
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = equipweapon.rate < fireDelay;
        
-        if (fDown && isFireReady && equipweapon.curAmmo > 0)
+        if (isFireReady && equipweapon.curAmmo > 0)  // fDown은 오큘러스 테스트로 잠시 보류
         {            
             equipweapon.Use();       
             Debug.Log("공격");
@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Reload()
+    public void Reload()
     {
         if (equipweapon == null)
         {
@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if (rDown && isFireReady)
+        if (rDown && isFireReady)  //  rDown은 오큘러스 장비 테스트로 인해 잠시 보류
         {
             GameManager.Instance.ReloadUIUpdate();
             isReload = true;
