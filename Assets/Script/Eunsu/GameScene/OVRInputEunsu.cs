@@ -9,6 +9,9 @@ public class OVRInputEunsu : MonoBehaviour
 
     private Player player;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();

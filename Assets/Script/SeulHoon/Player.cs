@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public GunSound gunSound;
     public int ammo; //플레이어의 탄알 총량
     float fireDelay;
-
+        
     private PlayerHealth playerHealth;
 
     [SerializeField]
@@ -41,7 +41,9 @@ public class Player : MonoBehaviour
         foreach (var item in weapons)
         {
             equipweapon = item.GetComponent<Weapon>();
-        }       
+        }
+        
+
     }
 
     private void Start()
@@ -49,12 +51,12 @@ public class Player : MonoBehaviour
         GameManager.Instance.ShootingUIUpdate(equipweapon.curAmmo, equipweapon.maxAmmo);            // 게임 초기시 UI 탄창 업데이드 (은수 작업)
     }
 
-    void Update()
+   /* void Update()
     {
         GetInput();
         Attack();
         Reload();
-    }
+    }*/
 
     //사용자 입력
     void GetInput()
@@ -69,7 +71,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
-
+     
         if (equipweapon == null)
         {
             Debug.Log("리턴");
@@ -81,9 +83,10 @@ public class Player : MonoBehaviour
         isFireReady = equipweapon.rate < fireDelay;
        
         if (isFireReady && equipweapon.curAmmo > 0)  // fDown은 오큘러스 테스트로 잠시 보류
-        {            
+        {
+            Debug.Log("어택 진짜 공격!");
             equipweapon.Use();       
-            Debug.Log("공격");
+          
             fireDelay = 0;
             shotEffectParticle.Play();
         }
