@@ -26,8 +26,8 @@ public class TrapPlane : MonoBehaviour
             if (trapWall != null)
             {
                 Debug.Log("플레인에 플레이어가 닿았고, trapwall이 감지되었다");
-               // trapWall.FadeOnStart();
-               // fireFieldCor = StartCoroutine(FireField(other.transform));
+                trapWall.FadeOnStart();
+                fireFieldCor = StartCoroutine(FireField(other.transform));
 
                 gasEffect.Play();
             } 
