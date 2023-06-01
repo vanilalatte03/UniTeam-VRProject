@@ -11091,56 +11091,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &790952926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 790952914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43d5ebe6b73708941815e4c0c720b6e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  curHealth: 100
-  panelPlayerBlood: {fileID: 1511422801}
-  bloodScreenCoolTime: 1.5
---- !u!114 &790952927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 790952914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae2917282e6661145a83b8a334ddb652, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textScore: {fileID: 2107815296}
---- !u!114 &790952928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 790952914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a551f2a282d0724489ac633d43de971, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 5010645992199832772}
-  gunSound: {fileID: 1227124391}
-  ammo: 100
-  shotEffectParticle: {fileID: 5066491346023672081}
-  catchItemParticle: {fileID: 4666015381830832463, guid: 00c97fa21d62c0744b5a92e23776d199, type: 3}
-  heatSound: {fileID: 4459864850579849438}
-  catchItemSound: {fileID: 4459864850579849439}
-  invincibilityTime: 1
 --- !u!54 &790952929
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16196,6 +16146,10 @@ PrefabInstance:
     - target: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_Name
       value: OVRCameraRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_TagString
@@ -48483,7 +48437,7 @@ Canvas:
   m_GameObject: {fileID: 1784295956}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1469646021}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -60129,13 +60083,16 @@ GameObject:
   - component: {fileID: 1853535223}
   - component: {fileID: 4459864850579849438}
   - component: {fileID: 4459864850579849439}
+  - component: {fileID: 4459864850579849442}
+  - component: {fileID: 4459864850579849441}
+  - component: {fileID: 4459864850579849440}
   m_Layer: 0
   m_Name: FirstPersonController
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &4459864850579849432
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -60480,6 +60437,56 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4459864850579849440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864850579849431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2917282e6661145a83b8a334ddb652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textScore: {fileID: 2107815296}
+--- !u!114 &4459864850579849441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864850579849431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d5ebe6b73708941815e4c0c720b6e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  curHealth: 100
+  panelPlayerBlood: {fileID: 1511422801}
+  bloodScreenCoolTime: 1.5
+--- !u!114 &4459864850579849442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864850579849431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a551f2a282d0724489ac633d43de971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 5010645992199832772}
+  gunSound: {fileID: 1227124391}
+  ammo: 100
+  shotEffectParticle: {fileID: 5066491346023672081}
+  catchItemParticle: {fileID: 4666015381830832463, guid: 00c97fa21d62c0744b5a92e23776d199, type: 3}
+  heatSound: {fileID: 4459864850579849438}
+  catchItemSound: {fileID: 4459864850579849439}
+  invincibilityTime: 1
 --- !u!1 &4459864850686750440
 GameObject:
   m_ObjectHideFlags: 0

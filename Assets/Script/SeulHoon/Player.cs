@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = equipweapon.rate < fireDelay;
        
-        if (isFireReady && equipweapon.curAmmo > 0)  // fDown은 오큘러스 테스트로 잠시 보류
+        if (fDown && isFireReady && equipweapon.curAmmo > 0)  // fDown은 오큘러스 테스트로 잠시 보류
         {            
             equipweapon.Use();       
             Debug.Log("공격");
