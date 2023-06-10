@@ -4,20 +4,26 @@ using TMPro;
 
 public class EndingManager : MonoBehaviour
 {
-    private int curScore;
-    private int bestScore;
-    private float time;
+    private int curScore;                                               // 현재 점수
+    private int bestScore;                                              // 기존 최고 점수
+    private float time;                                                 // 시간
 
     [SerializeField]
-    private TextMeshProUGUI textCurScore;
+    private TextMeshProUGUI textCurScore;                               // 현재 점수 텍스트 UI
 
     [SerializeField]
-    private TextMeshProUGUI textBestScore;
+    private TextMeshProUGUI textBestScore;                              // 최고 점수 텍스트 UI
 
     [SerializeField]
-    private TextMeshProUGUI textTime;
+    private TextMeshProUGUI textTime;                                   // 시간 텍스트 UI
 
     public void Start()
+    {
+        SetScore();
+    }
+
+    // 점수 세팅
+    private void SetScore()
     {
         curScore = PlayerPrefs.GetInt("CurScore");
         bestScore = PlayerPrefs.GetInt("BestScore");
@@ -36,11 +42,13 @@ public class EndingManager : MonoBehaviour
         textTime.text = $"{minFormat}:{secFormat}분";
     }
 
+    // 게임 재시작
     public void GameReStart()
     {
         SceneManager.LoadScene(1);
     }
 
+    // 게임 종료
     public void GameQuit()
     {
 #if UNITY_EDITOR

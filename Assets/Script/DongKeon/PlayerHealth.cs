@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public int maxHealth = 100;                     
     public int curHealth;
 
     [SerializeField]
-    private Image panelPlayerBlood;
+    private Image panelPlayerBlood;                                     // 플레이어 타격시 빨간 이펙트를 위한 이미지 UI (은수 작성)
 
     [SerializeField]
-    private float bloodScreenCoolTime;
+    private float bloodScreenCoolTime;                                  // 빨간 이미지의 반복 주기 (은수 작성)
 
     private void Awake()
     {
@@ -24,18 +24,6 @@ public class PlayerHealth : MonoBehaviour
         GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);    
     }
 
-    public void TakeDamage(int damageAmount)
-    {
-        curHealth -= damageAmount;
-        GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);
-        StartCoroutine("PanelDamageEffect");
-        if (curHealth <= 0)
-        {
-            curHealth = 0;
-            ScoreManager.Instance.SetScore();
-            GameManager.Instance.GameFail();
-        }
-    }
 
     public void Heal(int healAmount)
     {
@@ -49,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
         GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);
     }
 
+    // 필드 함정 진입시 타격 효과 (은수 작성)
     public void FieldDamage(int damage)
     {
         curHealth -= damage;
@@ -64,6 +53,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    // 플레이어 빨간 판넬 효과 (은수 작성)
     public IEnumerator FielPanelDamageEffect()
     {
         yield return new WaitForSeconds(1f);
@@ -71,6 +61,7 @@ public class PlayerHealth : MonoBehaviour
         StartCoroutine("PanelDamageEffect");
     }
 
+    // 플레이어 빨간 판넬 효과 (은수 작성)
     private IEnumerator PanelDamageEffect()
     {
         float currentTime = 0.0f;
@@ -87,6 +78,20 @@ public class PlayerHealth : MonoBehaviour
             panelPlayerBlood.color = new Color(255, 0, 0, redAlpha - alpha);
 
             yield return null;
+        }
+    }
+
+    // 플레이어 피격 효과 (은수 작성)
+    public void TakeDamage(int damageAmount)
+    {
+        curHealth -= damageAmount;
+        GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);
+        StartCoroutine("PanelDamageEffect");
+        if (curHealth <= 0)
+        {
+            curHealth = 0;
+            ScoreManager.Instance.SetScore();
+            GameManager.Instance.GameFail();
         }
     }
 }

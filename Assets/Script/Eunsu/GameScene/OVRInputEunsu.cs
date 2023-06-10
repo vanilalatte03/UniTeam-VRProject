@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class OVRInputEunsu : MonoBehaviour
 {
-    public float movementSpeed = 8f;  // 플레이어 이동 속도
+    public float movementSpeed = 8f;                                        // 플레이어 이동 속도
 
-    private CharacterController characterController;  // 캐릭터 컨트롤러 컴포넌트
-    private OVRPlayerController ovrPlayerController;  // Oculus 플레이어 컨트롤러 컴포넌트
+    private CharacterController characterController;                        // 캐릭터 컨트롤러 컴포넌트
+    private OVRPlayerController ovrPlayerController;                        // Oculus 플레이어 컨트롤러 컴포넌트
 
-    private Player player;
+    private Player player;                                                  // 플레이어 객체
 
     private void Start()
     {
@@ -23,6 +23,7 @@ public class OVRInputEunsu : MonoBehaviour
         PlayerReload();
     }
 
+    // OVR Input을 통한 플레이어 이동 함수
     private void PlayerMove()
     {
         // Oculus Touch 컨트롤러의 왼쪽 스틱을 이용한 이동 입력
@@ -45,6 +46,7 @@ public class OVRInputEunsu : MonoBehaviour
         transform.Rotate(Vector3.up * rotationInput);
     }
 
+    // OVR 인풋을 통한 총알 발사 함수
     private void PlayerShot()
     {
         if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
@@ -53,6 +55,7 @@ public class OVRInputEunsu : MonoBehaviour
         }
     }
 
+    // OVR 인풋을 통한 총알 장전 함수
     private void PlayerReload()
     {
         if (OVRInput.GetDown(OVRInput.Button.One))

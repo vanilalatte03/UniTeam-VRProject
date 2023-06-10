@@ -5,15 +5,15 @@ using UnityEngine;
 public class SizeEffect : MonoBehaviour
 {
     [SerializeField]
-    private GameObject gametitle;
+    private GameObject gametitle;                                       // 사이즈 조정 함수를 적용할 오브젝트 (게임 타이틀 이미지)
 
     [SerializeField]
-    private float repeatTime = 2f;
+    private float repeatTime = 2f;                                      // 반복 주기 시간
 
     [SerializeField]
-    private float sizeRate = 1.5f;
+    private float sizeRate = 1.5f;                                      // 크기 비율
 
-    private Vector3 titleSize;
+    private Vector3 titleSize;                                          // 이미지 사이즈 저장 벡터
   
 
     private void Awake()
@@ -22,6 +22,7 @@ public class SizeEffect : MonoBehaviour
         StartCoroutine(StartSize());
     }
 
+    // 초기에 호출되는 반복 코루틴의 시작 코루틴
     private IEnumerator StartSize()
     {
         while (true)
@@ -32,6 +33,7 @@ public class SizeEffect : MonoBehaviour
         }
     }
 
+    // 실질적인 사이즈 이펙트 코루틴
     private IEnumerator Zoom(Vector3 start, Vector3 end)
     {
         float currentTime = 0.0f;

@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if (rDown && isFireReady)  //  rDown은 오큘러스 장비 테스트로 인해 잠시 보류
+        if (rDown && isFireReady)  
         {
             GameManager.Instance.ReloadUIUpdate();
             isReload = true;

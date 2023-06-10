@@ -5,10 +5,10 @@ using TMPro;
 public class LobbyManager : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI txtTime;
+    private TextMeshProUGUI txtTime;                                    // 최고 시간 텍스트 UI
 
     [SerializeField]
-    private TextMeshProUGUI txtScore;
+    private TextMeshProUGUI txtScore;                                   // 최고 점수 텍스트 UI
 
     private void Awake()
     {
@@ -16,11 +16,13 @@ public class LobbyManager : MonoBehaviour
         UpdateTime();
     }
 
+    // 게임 시작 버튼
     public void StartGame()
     {
         SceneManager.LoadScene(1);
     }
 
+    // 게임 종료 버튼
     public void ExitGame()
     {
 #if UNITY_EDITOR
@@ -30,6 +32,7 @@ public class LobbyManager : MonoBehaviour
 #endif
     }    
 
+    // 최신 점수 업데이트
     public void UpdateScore()
     {
         int score = PlayerPrefs.GetInt("BestScore");
@@ -45,6 +48,7 @@ public class LobbyManager : MonoBehaviour
         }       
     }
 
+    // 최신 클리어 시간 업데이트
     public void UpdateTime()
     {
         int time = PlayerPrefs.GetInt("BestTime");

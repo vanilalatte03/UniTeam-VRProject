@@ -8,11 +8,11 @@ public class ScoreManager : MonoBehaviour
 {
 
     [SerializeField]
-    private TextMeshProUGUI textScore;
+    private TextMeshProUGUI textScore;                                          // 점수 텍스트 UI
 
-    private int currentScore;
+    private int currentScore;                                                   // 현재 점수
 
-    public static ScoreManager Instance = null;
+    public static ScoreManager Instance = null;                                 // ScoreManager의 싱글톤을 위한 인스턴스
 
     private void Awake()
     {
@@ -22,9 +22,9 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    // 플레이어가 몬스터 닿았을때 점수 감소 
     private void OnTriggerEnter(Collider other)
-    {
-        // 몬스터 닿았을때 점수 감소 
+    { 
         if (other.tag == "Monster")
         {
             currentScore -= 20;
@@ -36,6 +36,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    // 몬스터의 타입별로 점수 증가
     public void PlusScore(string monsterType)
     {
         switch (monsterType)
@@ -62,6 +63,7 @@ public class ScoreManager : MonoBehaviour
         textScore.text = $"{currentScore}점";
     }
 
+    // 점수 세팅
     public void SetScore()
     {
         int bestScore = PlayerPrefs.GetInt("BestScore");
