@@ -87,6 +87,7 @@ public class PlayerHealth : MonoBehaviour
         curHealth -= damageAmount;
         GameManager.Instance.PlayerHPUIUpdate(curHealth, maxHealth);
         StartCoroutine("PanelDamageEffect");
+
         if (curHealth <= 0)
         {
             curHealth = 0;

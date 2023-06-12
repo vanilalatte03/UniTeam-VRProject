@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
     // 플레이어 체력 회복시 UI 표시
     public void PlayerHPUIUpdate(int curHp, int maxHp)
     {
+        curHp = curHp <= 0 ? 0 : curHp;
         playerHPSlider.value = (float) curHp / maxHp;
         txtPlayerHP.text = $"{curHp} / {maxHp}";
     }  
